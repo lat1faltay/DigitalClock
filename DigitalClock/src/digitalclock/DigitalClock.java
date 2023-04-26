@@ -22,7 +22,7 @@ public class DigitalClock {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         JFrame frame = new JFrame("Modern Clock");
         frame.setBounds(10,10,500,500);
@@ -37,7 +37,7 @@ public class DigitalClock {
                 g.setColor(Color.BLUE);
                 g.fillRect(0, 0, 500, 500);
                 g.setColor(Color.white);
-                String time = LocalTime.now().getHour()+":"+LocalTime.now().getMinute();
+                String time = String.format("%02d", LocalTime.now().getHour())+":"+String.format("%02d", LocalTime.now().getMinute())+":"+String.format("%02d", LocalTime.now().getSecond());
                 g.setFont(new Font("fira sans", 0,110));
                 g.drawString(time, 250-g.getFontMetrics().stringWidth(time)/2, 150);
             }
@@ -45,6 +45,10 @@ public class DigitalClock {
         };
         frame.add(panel);
         frame.setVisible(true);
+        while(true){
+            frame.repaint();
+            Thread.sleep(1000);
+        }
     }
     
 }
