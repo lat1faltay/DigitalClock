@@ -5,8 +5,10 @@
 package digitalclock;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.time.LocalTime;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -32,6 +34,10 @@ public class DigitalClock {
                 Graphics2D g = (Graphics2D)g2.create();
                 g.setColor(Color.BLUE);
                 g.fillRect(0, 0, 500, 500);
+                g.setColor(Color.white);
+                String time = LocalTime.now().getHour()+":"+LocalTime.now().getMinute();
+                g.setFont(new Font("fira sans", 0,110));
+                g.drawString(time, 250-g.getFontMetrics().stringWidth(time)/2, 150);
             }
             
         };
