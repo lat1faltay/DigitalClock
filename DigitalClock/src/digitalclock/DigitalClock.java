@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.time.LocalTime;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,6 +33,7 @@ public class DigitalClock {
             @Override
             public void paint(Graphics g2) {
                 Graphics2D g = (Graphics2D)g2.create();
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g.setColor(Color.BLUE);
                 g.fillRect(0, 0, 500, 500);
                 g.setColor(Color.white);
