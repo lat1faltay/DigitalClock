@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,10 +26,12 @@ public class DigitalClock {
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         JFrame frame = new JFrame("Modern Clock");
-        frame.setBounds(10,10,500,500);
+        frame.setBounds(250,250,500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // pencere işaretçilerini kapatma için kullanılmaktadır
-        frame.setUndecorated(true);
+        //frame.setUndecorated(true);
+        //frame.setSize(100, 100);
+        frame.setResizable(false);
         JPanel panel = new JPanel(){
             @Override
             public void paint(Graphics g2) {
@@ -40,6 +43,11 @@ public class DigitalClock {
                 String time = String.format("%02d", LocalTime.now().getHour())+":"+String.format("%02d", LocalTime.now().getMinute())+":"+String.format("%02d", LocalTime.now().getSecond());
                 g.setFont(new Font("fira sans", 0,110));
                 g.drawString(time, 250-g.getFontMetrics().stringWidth(time)/2, 150);
+                String m = LocalDate.now().getMonth().toString();
+                String date = m.charAt(0)+m.substring(1, m.length()).toLowerCase()+ " " + String.format("%02d", LocalDate.now().getDayOfMonth())+ " " +LocalDate.now().getYear();
+                g.setFont(new Font("fira sans", 0,40));
+                g.drawString(date, 250-g.getFontMetrics().stringWidth(date)/2, 200);
+                
             }
             
         };
